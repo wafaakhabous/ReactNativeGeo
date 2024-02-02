@@ -41,8 +41,8 @@ const ListWithIcon = () => {
 
   const getAvatarImage = (sex) => {
     return sex === 'male'
-      ? require('./male-avatar-boy-face-man-user-9-svgrepo-com.png')
-      : require('./female-avatar-girl-face-woman-user-2-svgrepo-com.png');
+      ? require('./images/Male.png')
+      : require('./images/Female.png');
   };
 
   const handleAccept = async (eventId, userId) => {
@@ -117,7 +117,7 @@ const ListWithIcon = () => {
                     <TouchableOpacity onPress={() => handleAccept(item.eventId, item.userId)}>
                       <Image
                         style={styles.icon}
-                        source={require('./like-svgrepo-com.png')}
+                        source={require('./images/like-svgrepo-com.png')}
                       />
                     </TouchableOpacity>
                     <Text style={styles.iconFonts}>Accept</Text>
@@ -127,7 +127,7 @@ const ListWithIcon = () => {
                     <TouchableOpacity onPress={() => handleRefuse(item.eventId, item.userId)}>
                       <Image
                         style={styles.icon}
-                        source={require('./dislike-svgrepo-com.png')}
+                        source={require('./images/dislike-svgrepo-com.png')}
                       />
                       <Text style={styles.iconFonts}>Refuse</Text>
                     </TouchableOpacity>

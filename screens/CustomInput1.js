@@ -1,63 +1,40 @@
-// CustomInput.js
-import React, { useState } from 'react';
-import { View, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import moment from 'moment';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+// CustomInput1.js
+import React from 'react';
+import { View, TextInput, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-const CustomInput1 = ({ style, placeholder, value, onChangeText, icon }) => {
-  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-
-  const showDatePicker = () => {
-    setDatePickerVisibility(true);
-  };
-
-  const hideDatePicker = () => {
-    setDatePickerVisibility(false);
-  };
-
-  const handleConfirm = (date) => {
-    hideDatePicker();
-    // Format the date using moment.js or any other date formatting library
-    const formattedDate = moment(date).format('YYYY-MM-DD HH:mm:ss');
-    onChangeText(formattedDate);
-  };
-
-  return (
-    <View style={[styles.container, style]}>
-      {icon}
-      <TouchableOpacity onPress={showDatePicker}>
-        <Icon name="calendar" size={20} color="#555" />
-      </TouchableOpacity>
-      <TextInput
-        style={styles.input}
-        placeholder={placeholder}
-        value={value}
-        editable={false}
-      />
-      <DateTimePickerModal
-        isVisible={isDatePickerVisible}
-        mode="datetime"
-        onConfirm={handleConfirm}
-        onCancel={hideDatePicker}
-      />
-    </View>
-  );
-};
+const CustomInput1 = ({ style, placeholder, value, onChangeText, icon }) => (
+  <View style={[styles.inputContainer, style]}>
+    {icon && <Icon name={icon} size={20} color="#000" style={styles.icon} />}
+    <TextInput
+      style={styles.input}
+      placeholder={placeholder}
+      placeholderTextColor="#808080"
+      value={value}
+      onChangeText={onChangeText}
+      underlineColorAndroid="transparent" // Remove underline
+    />
+  </View>
+);
 
 const styles = StyleSheet.create({
-  container: {
+  inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    marginVertical: 10,
+    borderBottomWidth: 1, // Add a border instead of using a rounded box
+    borderBottomColor: '#723E04',
+    marginBottom: 20, // Adjust margin bottom as needed
+    marginRight:35,
+  },
+  icon: {
+    marginLeft: 10,
+    marginRight: 10,
   },
   input: {
     flex: 1,
-    marginLeft: 10,
+    height: 40, // Adjust height as needed
+    paddingHorizontal: 10,
+   
   },
 });
 

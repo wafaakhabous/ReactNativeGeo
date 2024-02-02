@@ -7,8 +7,7 @@ const MyEvents = () => {
   const [userEvents, setUserEvents] = useState([]);
 
   useEffect(() => {
-    // Fetch user email from AsyncStorage
-    const fetchUserEmail = async () => {
+     const fetchUserEmail = async () => {
       try {
         const storedEmail = await AsyncStorage.getItem('user');
 
@@ -24,8 +23,7 @@ const MyEvents = () => {
   }, []);
 
   useEffect(() => {
-    // Fetch events associated with the user's email
-    const fetchUserEvents = async () => {
+     const fetchUserEvents = async () => {
       try {
         const response = await fetch(`http://192.168.1.8:3001/getEventsByEMail?userEmail=${userEmail}`);
 
@@ -35,8 +33,7 @@ const MyEvents = () => {
 
         const events = await response.json();
 
-        // Filter events based on the user's email
-        const userEvents = events.filter((event) => {
+         const userEvents = events.filter((event) => {
           const eventUserEmail = event.userEmail && typeof event.userEmail === 'string' ?
             JSON.parse(event.userEmail).email :
             null;
@@ -58,14 +55,12 @@ const MyEvents = () => {
     }
   }, [userEmail]);
 
-  // Sport image mapping
-  const sportImages = {
-    football: require('./football.png'),
-    basketball: require('./basketball.png'),
-    volleyball: require('./volleyball.png'),
-    cycling: require('./cycling.png'),
-    // Add more sports as needed
-  };
+   const sportImages = {
+    football: require('./images/football.png'),
+    basketball: require('./images/basketball.png'),
+    volleyball: require('./images/volleyball.png'),
+    cycling: require('./images/cycling.png'),
+   };
 
   const showDescriptionAlert = (description) => {
     Alert.alert(
@@ -97,11 +92,7 @@ const MyEvents = () => {
             ></Image>
             <View style={styles.rect10}>
               <Text style={styles.football}>{item.sport}</Text>
-            </View>
-            {/* <View style={styles.rect11}>
-              <Text style={styles.description}>{item.description}</Text>
-            </View>
-             */}
+            </View> 
             
             <View style={styles.rect11}>
               <Text style={styles.description}>{item.numPersonsNeeded} people needed</Text>
@@ -119,8 +110,7 @@ const MyEvents = () => {
           </View>
         )}
       />
-    {/* </ImageBackground> */}
-  </View>
+   </View>
   );
 };
 

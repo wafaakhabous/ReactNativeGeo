@@ -8,9 +8,9 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const handleCreateAcc = () => {
-    // Redirect to HomeScreen
-    navigation.navigate('Signup'); // Replace 'HomeScreen' with the actual name of your HomeScreen component
+     navigation.navigate('Signup');  
   };
   
   const handleLogin = async () => {
@@ -20,7 +20,7 @@ const LoginScreen = ({ navigation }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }), // Use email and password state variables here
+        body: JSON.stringify({ email, password }),  
       });
   
       if (response.ok) {
@@ -42,7 +42,6 @@ const LoginScreen = ({ navigation }) => {
       Alert.alert('Error', 'An error occurred during login.');
     }
   };
-  
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -50,14 +49,14 @@ const LoginScreen = ({ navigation }) => {
         <ImageBackground
           style={styles.rect1}
           imageStyle={styles.rect1_imageStyle}
-          source={require("./loginBackgd.png")}
+          source={require("./images/loginBackgd.png")}
         >
           <Text style={styles.signIn}>Sign In</Text>
         </ImageBackground>
         <View style={styles.rect2}>
           <View style={styles.rect3}></View>
           <Image
-            source={require("./slogann.png")}
+            source={require("./images/slogann.png")}
             resizeMode="contain"
             style={styles.image1}
           ></Image>

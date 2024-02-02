@@ -9,15 +9,13 @@ const RequestsList = () => {
 
 
   useEffect(() => {
-    // Fetch requests from the server when the component mounts
-    fetchRequests();
+     fetchRequests();
     fetchMyEvents();
 
   }, []);
   const fetchMyEvents = async () => {
     try {
-      // Fetch events associated with the user's email
-      const response = await fetch('http://192.168.1.8:3001/getEvents'); // Update the endpoint
+       const response = await fetch('http://192.168.1.8:3001/getEvents');  
       console.log('Response Status:', response.status);
 
       if (!response.ok) {
@@ -27,8 +25,7 @@ const RequestsList = () => {
       const events = await response.json();
       console.log('Fetched events:', events);
 
-      // Filter events based on the user's email
-      const userEmail = await AsyncStorage.getItem('user');; // Replace with the actual user email
+       const userEmail = await AsyncStorage.getItem('user');; 
       const userEvents = events.filter((event) => event.userEmail === userEmail);
 
       console.log('User events:', userEvents);
@@ -120,8 +117,8 @@ const RequestsList = () => {
   
   const getAvatarImage = (sex) => {
     return sex === 'male'
-      ? require('./male-avatar-boy-face-man-user-9-svgrepo-com.png')
-      : require('./female-avatar-girl-face-woman-user-2-svgrepo-com.png');
+      ? require('./images/Male.png')
+      : require('./images/Female.png');
   };
 
   const renderItem = ({ item }) => {
@@ -152,7 +149,7 @@ const RequestsList = () => {
                 onPress={() => handleAccept(item.eventId, item.userId)}
                 disabled={item.status === 'Accepted' || item.status === 'Refused'}
               >
-                <Image style={styles.itemIcon} source={require('./like-svgrepo-com.png')} />
+                <Image style={styles.itemIcon} source={require('./images/like-svgrepo-com.png')} />
                 <Text style={styles.itemIconText}>Accept</Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -163,7 +160,7 @@ const RequestsList = () => {
                 onPress={() => handleRefuse(item.eventId, item.userId)}
                 disabled={item.status === 'Accepted' || item.status === 'Refused'}
               >
-                <Image style={styles.itemIcon} source={require('./dislike-svgrepo-com.png')} />
+                <Image style={styles.itemIcon} source={require('./images/dislike-svgrepo-com.png')} />
                 <Text style={styles.itemIconText}>Refuse</Text>
               </TouchableOpacity>
             </View>

@@ -10,6 +10,7 @@ import { Ionicons,MaterialIcons  } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const HomeScreen = ({ navigation }) => {
+
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
   const [desLatitude, setDesLatitude] = useState(null);
@@ -59,7 +60,8 @@ const getLocation = async () => {
       if (response.ok) {
         setEvents(result);
         setFilteredEvents(result);
-      } else {
+      } else
+      {
         console.error('Failed to fetch events:', result.message);
       }
     } catch (error) {
@@ -169,20 +171,10 @@ const getLocation = async () => {
   };
   const [currentUser, setCurrentUser] = useState(null);
   const loadCurrentUser = async () => {
-    // try {
-    //   const user = await AsyncStorage.getItem('user');
-    //   if (user) {
-    //     setCurrentUser(JSON.parse(user));
-    //   }
-    // } catch (error) {
-    //   console.error('Error loading user:', error);
-    // }
     try {
-      // Get the user email from AsyncStorage
-      const userEmailString = await AsyncStorage.getItem('user');
+       const userEmailString = await AsyncStorage.getItem('user');
       
-      // Parse the JSON string to extract the email
-      const userEmailObject = JSON.parse(userEmailString);
+       const userEmailObject = JSON.parse(userEmailString);
       const userEmail = userEmailObject.email;
   
       console.log('User Email:', userEmail);
@@ -191,7 +183,8 @@ const getLocation = async () => {
       const response = await fetch(`http://192.168.1.8:3001/getUser/${userEmail}`);
       const userData = await response.json();
   
-      if (response.ok) {
+      if (response.ok) 
+      {
         setCurrentUser(userData);
       } else 
       {
@@ -204,15 +197,11 @@ const getLocation = async () => {
 
 
 
-
-
-
-
   };
   return (
     <View style={{ flex: 1 }}>
-      {/* Icon to toggle sidebar */}
-      <TouchableOpacity style={styles.sidebarToggle} onPress={toggleSidebar}>
+      {/* --------------------------------------  NAVBAR / SIDEBAR ----------------------------------------------- */}
+       <TouchableOpacity style={styles.sidebarToggle} onPress={toggleSidebar}>
       </TouchableOpacity>
 
       {/* Side Navigation Bar */}
@@ -222,14 +211,13 @@ const getLocation = async () => {
             <Image
               source={
                 currentUser.sex === 'male'
-                  ? require('./Male.png')
-                  : require('./Female.png')
+                  ? require('./images/Male.png')
+                  : require('./images/Female.png')
               }
               style={styles.profileImage}
             />
             <Text style={styles.profileName}>{currentUser.name}</Text>
             </TouchableOpacity>
-            
             <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('profile')}>
           <Text style={styles.buttonText}>Profil</Text>
           </TouchableOpacity>
@@ -248,19 +236,7 @@ const getLocation = async () => {
         </View>
       )}
 
-      {/* Map and other components */}
-      <View style={{ flex: 1 }}>
-        {/* <View style={styles.searchContainer}>
-          <TextInput
-            style={styles.searchInput}
-            placeholder="Search by name"
-            value={searchText}
-            onChangeText={(text) => setSearchText(text)}
-          />
-          <TouchableOpacity style={styles.searchButton} onPress={handleSearch}>
-            <AntDesign name="search1" size={20} color="gray" style={styles.searchIcon} />
-          </TouchableOpacity>
-        </View> */}
+      <View style={{ flex: 1 }}> 
         <ImageBackground
           style={styles.rect4}
            
@@ -272,12 +248,7 @@ const getLocation = async () => {
               name="align-justify"
               style={styles.icon4}
             ></FontAwesomeIcon> 
-      </TouchableOpacity>
-
-            {/* <FontAwesomeIcon
-              name="align-justify"
-              style={styles.icon4}
-            ></FontAwesomeIcon> */}
+      </TouchableOpacity> 
              <View style={styles.rect5}>
               <TextInput
                 style={styles.searchInput}
@@ -289,7 +260,11 @@ const getLocation = async () => {
             </View>
           </View>
         </ImageBackground>
-        
+
+{/* --------------------------------------  NAVBAR / SIDEBAR ----------------------------------------------- */}
+
+{/* --------------------------------------  MAP ----------------------------------------------- */}
+
         {latitude !== null && longitude !== null && (
   <MapView
     showsUserLocation
@@ -329,7 +304,12 @@ const getLocation = async () => {
     )}
   </MapView>
 )}
+{/* --------------------------------------  MAP ----------------------------------------------- */}
+{/* --------------------------------------  MAP ----------------------------------------------- */}
 
+
+
+{/* --------------------------------------  DETAIL ENVENT ----------------------------------------------- */}
 
         <Modal
           animationType="slide"
@@ -358,15 +338,22 @@ const getLocation = async () => {
             </TouchableOpacity>
           </View>
         </Modal>
+
+{/* --------------------------------------  DETAIL ENVENT ----------------------------------------------- */}
+
+
+{/* --------------------------------------  ADD BUTTON ----------------------------------------------- */}
+
         <TouchableOpacity
           style={styles.topButton}
           onPress={() =>
             navigation.navigate('PostEvent', { updateMap: fetchEvents })
           }
         >
-          {/* Include the Icon component directly */}
           <Icon name="plus" style={styles.plusIcon}></Icon>
         </TouchableOpacity>
+{/* --------------------------------------  ADD BUTTON ----------------------------------------------- */}
+
 
       </View>
     </View>

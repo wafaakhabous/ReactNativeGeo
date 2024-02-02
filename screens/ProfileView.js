@@ -8,17 +8,14 @@ const ProfileScreen = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // Fetch user details when the component mounts
-    fetchUserDetails();
+     fetchUserDetails();
   }, []);
 
   const fetchUserDetails = async () => {
     try {
-      // Get the user email from AsyncStorage
-      const userEmailString = await AsyncStorage.getItem('user');
+       const userEmailString = await AsyncStorage.getItem('user');
       
-      // Parse the JSON string to extract the email
-      const userEmailObject = JSON.parse(userEmailString);
+       const userEmailObject = JSON.parse(userEmailString);
       const userEmail = userEmailObject.email;
   
       console.log('User Email:', userEmail);
@@ -39,8 +36,7 @@ const ProfileScreen = () => {
   
   
   if (!user) {
-    // Render loading or placeholder while user data is being fetched
-    return (
+     return (
       <View style={styles.container}>
         <Text>Loading...</Text>
       </View>
@@ -48,62 +44,21 @@ const ProfileScreen = () => {
   }
 
 
-  // Determine the avatar source based on the user's gender (assuming user has a 'sex' property)
-  const avatarSource = user.sex === 'male'
-    ? require('./Male.png')
-    : require('./Female.png');
+   const avatarSource = user.sex === 'male'
+    ? require('./images/Male.png')
+    : require('./images/Female.png');
  
 
-  return (
-    // <View style={styles.container}>
-    //   <View style={styles.avatarContainer}>
-    //     <Image
-    //       source={avatarSource}
-    //       style={styles.avatar}
-    //     />
-    //     <Text style={styles.name}>{`${user.firstName} ${user.lastName}`}</Text>
-    //   </View>
-    //   <View style={styles.infoContainer}>
-    //     <Text style={styles.infoLabel}>Email:</Text>
-    //     <Text style={styles.infoValue}>{user.email}</Text>
-    //   </View>
-    //   <View style={styles.infoContainer}>
-    //     <Text style={styles.infoLabel}>Phone Number:</Text>
-    //     <Text style={styles.infoValue}>{user.phoneNumber}</Text>
-    //   </View>
-    //   <View style={styles.infoContainer}>
-    //     <Text style={styles.infoLabel}>Favorite Sport:</Text>
-    //     <Text style={styles.infoValue}>{user.favoriteSport}</Text>
-    //   </View>
-    //   <View style={styles.infoContainer}>
-    //     <Text style={styles.infoLabel}>Competences Level:</Text>
-    //     <Text style={styles.infoValue}>{user.competence}%</Text>
-    //   </View>
-    //   <View style={styles.infoContainer}>
-    //     <Text style={styles.infoLabel}>About:</Text>
-    //     <Text style={styles.infoValue}>{user.about}</Text>
-    //   </View>
-      
-    //   {/* Add more user details as needed */}
-    // </View>
+  return ( 
     <ScrollView style={styles.container}>
     <View style={styles.rectStack}>
       <ImageBackground
         style={styles.rect}
         imageStyle={styles.rect_imageStyle}
-        source={require("./profilBg.png")}
+        source={require("./images/profilBg.png")}
       >
         <Svg viewBox="0 0 125.55 122" style={styles.ellipse1}>
-          {/* <Ellipse
-            stroke="rgba(230, 230, 230,1)"
-            strokeWidth={0}
-            cx={63}
-            cy={61}
-            rx={63}
-            ry={61}
-            source={avatarSource}
-          ></Ellipse>
-            */}
+           
              <Image
     x={0}
     y={0}

@@ -21,7 +21,7 @@ const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [competence, setCompetence] = useState(50); // Initial competence level
+  const [competence, setCompetence] = useState(50); 
   const [about, setAbout] = useState('');
 
   const handleRegister = async () => {
@@ -41,8 +41,6 @@ const RegisterScreen = ({ navigation }) => {
           favoriteSport,
           competence,
           about,
-          
-
         }),
       });
 
@@ -52,15 +50,12 @@ const RegisterScreen = ({ navigation }) => {
         console.log('Registration successful:', result);
         Alert.alert('Registration successful', result.message);
 
-        // Handle successful registration, e.g., navigate to another screen
-      } else {
+       } else {
         console.error('Registration failed:', result.message);
-        // Handle registration failure, e.g., display an error message
-      }
+       }
     } catch (error) {
       console.error('Registration error:', error);
-      // Handle network or other errors
-    }
+     }
   };
   const genderOptions = ['Male', 'Female', 'Other'];
   const sportOptions = ['Football', 'Basketball', 'Tennis', 'Other'];
@@ -70,10 +65,10 @@ const RegisterScreen = ({ navigation }) => {
       <ImageBackground
         style={styles.rect1}
         imageStyle={styles.rect1_imageStyle}
-        source={require("./SignUpBg.png")}
+        source={require("./images/SignUpBg.png")}
       >
         <Image
-          source={require("./slogann.png")}
+          source={require("./images/slogann.png")}
           resizeMode="contain"
           style={styles.image1}
         ></Image>

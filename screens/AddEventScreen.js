@@ -3,15 +3,12 @@ import { Picker } from '@react-native-picker/picker';
 import { ScrollView, View, Text, TextInput, Button, StyleSheet, Alert, ImageBackground, Image,TouchableOpacity } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
-
-
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome"; 
 import Svg, { Ellipse } from "react-native-svg";
 import CustomInput1 from './CustomInput1';
 import CustomInput from './CustomInput';
 import CustomDropdown from './CustomDropdown'; 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
 
 
 const AddEventScreen = ({ navigation, updateMap }) => {
@@ -24,9 +21,7 @@ const AddEventScreen = ({ navigation, updateMap }) => {
 
   const handleAddEvent = async () => {
     try {
-      // Retrieve user email from AsyncStorage
       const userEmail = await AsyncStorage.getItem('user');
-
       const response = await fetch('http://192.168.1.8:3001/addEvent', {
         method: 'POST',
         headers: {
@@ -41,7 +36,7 @@ const AddEventScreen = ({ navigation, updateMap }) => {
             latitude: location.latitude,
             longitude: location.longitude,
           },
-          userEmail, // Include the user's email in the request
+          userEmail, 
         }),
       });
 
@@ -50,14 +45,11 @@ const AddEventScreen = ({ navigation, updateMap }) => {
       if (response.ok) {
         console.log('Event added successfully:', result);
         Alert.alert('Event added successfully', result.message);
-        // Handle successful event addition, e.g., navigate to another screen
       } else {
         console.error('Event addition failed:', result.message);
-        // Handle event addition failure, e.g., display an error message
       }
     } catch (error) {
       console.error('Event addition error:', error);
-      // Handle network or other errors
     }
   };
 
@@ -74,17 +66,13 @@ const AddEventScreen = ({ navigation, updateMap }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const loadCurrentUser = async () => {
     try {
-      // Get the user email from AsyncStorage
       const userEmailString = await AsyncStorage.getItem('user');
       
-      // Parse the JSON string to extract the email
       const userEmailObject = JSON.parse(userEmailString);
       const userEmail = userEmailObject.email;
   
       console.log('User Email:', userEmail);
-  
-      // Fetch user details based on the email
-      const response = await fetch(`http://192.168.1.8:3001/getUser/${userEmail}`);
+        const response = await fetch(`http://192.168.1.8:3001/getUser/${userEmail}`);
       const userData = await response.json();
   
       if (response.ok) 
@@ -97,9 +85,6 @@ const AddEventScreen = ({ navigation, updateMap }) => {
     } catch (error) {
       console.error('Error fetching user details:', error);
     }
-
-
-
 
   };
   useEffect(() => {
@@ -118,15 +103,11 @@ const AddEventScreen = ({ navigation, updateMap }) => {
     }
   };
     return (
-      
       <ScrollView contentContainerStyle={styles.container}>
          
         <View>
-
         <ImageBackground
           style={styles.rect4}
-           
-           
         >
           <View style={styles.icon4Row}>
           <TouchableOpacity   onPress={toggleSidebar}>
@@ -139,21 +120,19 @@ const AddEventScreen = ({ navigation, updateMap }) => {
           </View>
         </ImageBackground>
 
-
 <View style={{ flex: 1 }}>
   
         <TouchableOpacity style={styles.sidebarToggle} onPress={toggleSidebar}>
       </TouchableOpacity>
 
-      {/* Side Navigation Bar */}
       {sidebarVisible && currentUser && (
         <View style={styles.sideNavBar}>
             <TouchableOpacity >
             <Image
               source={
                 currentUser.sex === 'male'
-                  ? require('./Male.png')
-                  : require('./Female.png')
+                  ? require('./images/Male.png')
+                  : require('./images/Female.png')
               }
               style={styles.profileImage}
             />
@@ -177,40 +156,19 @@ const AddEventScreen = ({ navigation, updateMap }) => {
           </TouchableOpacity>
         </View>
       )}
-      </View>
-
-
-
+      </View> 
       </View>
     
       
-      <Text style={styles.signUp}>Add Event</Text>
-        
-        {/* <TextInput
-          style={styles.input}
-          placeholder="Description"
-          value={description}
-          onChangeText={setDescription}
-        /> */}
-
+      <Text style={styles.signUp}>Add Event</Text> 
 <CustomInput style={styles.rect2}    placeholder="Description" value={description}  onChangeText={setDescription}
         icon={<Icon name="information-outline" size={20} color="#555" />}/>
-
-        {/* <TextInput
-          style={styles.input}
-          placeholder="Number of Persons Needed"
-          value={numPersonsNeeded}
-          onChangeText={setNumPersonsNeeded}
-          keyboardType="numeric"
-        /> */}
+ 
         <CustomInput style={styles.rect2} keyboardType="numeric"   placeholder="numPersonsNeeded" value={numPersonsNeeded}  onChangeText={setNumPersonsNeeded}
         icon={<Icon name="counter" size={20} color="#555" />}/>
 
-        
         <CustomInput style={styles.rect2}    placeholder="dateTime" value={dateTime}  onChangeText={setDateTime}
         icon={<Icon name="calendar" size={20} color="#555" />}/>
- 
- 
  <View style={styles.row}>
           <Picker
             selectedValue={sport}
@@ -241,18 +199,15 @@ const AddEventScreen = ({ navigation, updateMap }) => {
             {location && <Marker coordinate={location} />}
           </MapView>
         </View>
-        
-        
+      
         <TouchableOpacity style={styles.rect10} onPress={handleAddEvent}>
           <Text style={styles.submit}>Post</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.goBackButton} onPress={() => navigation.goBack()}>
-  <Text style={styles.goBackText}>Go Back</Text>
-</TouchableOpacity>
+        
          </ScrollView>
     );
   };
-    
+
 const styles = StyleSheet.create({
   sidebarToggle: {
     position: 'absolute',

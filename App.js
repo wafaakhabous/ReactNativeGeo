@@ -15,66 +15,52 @@ import Comments from './screens/Comments';
 import CustomInput from './screens/CustomInput';
 import CustomInput1 from './screens/CustomInput1';
 import CustomDropdown from './screens/CustomDropdown';
-import MapEvents from './screens/MapEvents';
-import SideBar1 from './screens/SideBar1';
-
+ 
 const AppNavigator = createStackNavigator(
   {
     Login: {
       screen: LoginScreen,
       navigationOptions: {
-        headerShown: false, // Hide the header for this specific screen
+        headerShown: false,  
       },
     },
     Home:  {
       screen: HomeScreen,
       navigationOptions: {
-        headerShown: false, // Hide the header for this specific screen
+        headerShown: false,  
       },
     },
     Pagehome: {
       screen: HomePage,
       navigationOptions: {
-        headerShown: false, // Hide the header for this specific screen
+        headerShown: false,  
       },
     },
     Signup: {
       screen: RegisterScreen,
       navigationOptions: {
-        headerShown: false, // Hide the header for this specific screen
+        headerShown: false, 
       },
-    },
-    MapEvents: {
-      screen: MapEvents,
-      navigationOptions: {
-        headerShown: false, // Hide the header for this specific screen
-      },
-    },
-    SideBar1: {
-      screen: SideBar1,
-      navigationOptions: {
-        headerShown: false, // Hide the header for this specific screen
-      },
-    },
+    }, 
     CustomInput:CustomInput,
     CustomInput1:CustomInput1,
     CustomDropdown:CustomDropdown,
     PostEvent: {
       screen: AddEventScreen,
       navigationOptions: {
-        headerShown: false, // Hide the header for this specific screen
+        headerShown: false,  
       },
     },
     Demandes: RequestsList,
     MyEvents:{
       screen: MyEvents,
       navigationOptions: {
-        headerShown: false, // Hide the header for this specific screen
+        headerShown: false, 
       },},
     profile: {
       screen: ProfileScreen,
       navigationOptions: {
-        headerShown: false, // Hide the header for this specific screen
+        headerShown: false,  
       },},
     req:ListWithIcon,
     comm:Comments

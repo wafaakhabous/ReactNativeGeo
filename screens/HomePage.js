@@ -13,11 +13,11 @@ function HomePage({ navigation }) {
       <ImageBackground
         style={styles.backgroundImage}
         imageStyle={styles.backgroundImageStyle}
-        source={require("./gradient.png")}
+        source={require("./images/gradient.png")}
       >
         <View style={styles.contentContainer}>
           <Image
-            source={require("./logo1.png")}
+            source={require("./images/logo1.png")}
             resizeMode="contain"
             style={styles.logoImage}
           />
